@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="uid://wj8eqnb2ujvh"]
+
+[ext_resource type="Script" path="res://scripts/rotate.gd" id="1_qoul5"]
+[ext_resource type="PackedScene" uid="uid://djho3g7j7u5bw" path="res://scenes/decoration_container.tscn" id="2_4rwud"]
+
+[node name="TowerDecorations" type="Node2D"]
+scale = Vector2(0.4, 0.4)
+
+[node name="InnerDecorations" type="Node2D" parent="."]
+script = ExtResource("1_qoul5")
+rotation_per_second = 0.5
+
+[node name="DecorationContainer" parent="InnerDecorations" instance=ExtResource("2_4rwud")]
+position = Vector2(150, 0)
+scale = Vector2(0.7, 0.7)
+
+[node name="DecorationContainer2" parent="InnerDecorations" instance=ExtResource("2_4rwud")]
+position = Vector2(-150, 0)
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
+
+[node name="DecorationContainer3" parent="InnerDecorations" instance=ExtResource("2_4rwud")]
+position = Vector2(0, 150)
+rotation = 1.5708
+scale = Vector2(0.7, 0.7)
+
+[node name="DecorationContainer4" parent="InnerDecorations" instance=ExtResource("2_4rwud")]
+position = Vector2(0, -150)
+rotation = -1.5708
+scale = Vector2(0.7, 0.7)
+
+[node name="OuterDecorations" type="Node2D" parent="."]
+rotation = 0.598648
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_qoul5")
+rotation_per_second = -0.3
+
+[node name="OuterDecorations90Degrees" type="Node2D" parent="OuterDecorations"]
+scale = Vector2(2, 2)
+
+[node name="DecorationContainer" parent="OuterDecorations/OuterDecorations90Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(150, 0)
+scale = Vector2(0.4, 0.4)
+
+[node name="DecorationContainer2" parent="OuterDecorations/OuterDecorations90Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(-150, 0)
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+
+[node name="DecorationContainer3" parent="OuterDecorations/OuterDecorations90Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(0, 150)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+
+[node name="DecorationContainer4" parent="OuterDecorations/OuterDecorations90Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(0, -150)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+
+[node name="OuterDecorations45Degrees" type="Node2D" parent="OuterDecorations"]
+rotation = 0.785398
+scale = Vector2(2, 2)
+
+[node name="DecorationContainer" parent="OuterDecorations/OuterDecorations45Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(150, 0)
+scale = Vector2(0.4, 0.4)
+
+[node name="DecorationContainer2" parent="OuterDecorations/OuterDecorations45Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(-150, 0)
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+
+[node name="DecorationContainer3" parent="OuterDecorations/OuterDecorations45Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(0, 150)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+
+[node name="DecorationContainer4" parent="OuterDecorations/OuterDecorations45Degrees" instance=ExtResource("2_4rwud")]
+position = Vector2(0, -150)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+self_modulate = Color(15, 15, 15, 1)
+color = Color(0.300792, 0.135633, 7.21961e-08, 1)
+polygon = PackedVector2Array(0, -60, 5, -55, 10, -57.5, 15, -55, 20, -52.5, 20, -52.5, 22.5, -47.5, 22.5, -47.5, 25, -47.5, 27.5, -50, 32.5, -50, 32.5, -47.5, 32.5, -42.5, 32.5, -37.5, 37.5, -35, 37.5, -35, 35, -27.5, 40, -25, 40, -25, 42.5, -22.5, 50, -25, 50, -22.5, 50, -12.5, 57.5, -12.5, 55, -7.5, 50, -5, 45, -2.5, 45, 0, 45, 5, 45, 7.5, 42.5, 10, 40, 10, 37.5, 15, 40, 17.5, 42.5, 20, 42.5, 20, 42.5, 25, 40, 35, 45, 37.5, 42.5, 42.5, 40, 45, 37.5, 47.5, 32.5, 47.5, 30, 57.5, 35, 60, 27.5, 62.5, 22.5, 62.5, 17.5, 57.5, 12.5, 57.5, 0, 57.5, -2.5, 50, -7.5, 50, -12.5, 52.5, -22.5, 45, -20, 45, -30, 37.5, -32.5, 37.5, -35, 40, -45, 35, -45, 30, -42.5, 27.5, -52.5, 17.5, -52.5, 17.5, -52.5, 15, -50, 7.5, -50, 5, -52.5, -2.5, -55, -5, -50, -7.5, -47.5, -7.5, -45, -17.5, -45, -20, -45, -22.5, -32.5, -27.5, -32.5, -27.5, -35, -35, -35, -45, -30, -45, -30, -45, -25, -57.5, -15, -57.5, -15, -52.5, -10, -52.5, -7.5, -57.5)
