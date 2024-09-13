@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var state_machine: StateMachine = $StateMachine
 
 var focused = true
 var mouse_hovered = false
@@ -16,12 +17,13 @@ func _ready() -> void:
 	point_light.color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
 
 func _physics_process(_delta: float) -> void:
-	if not focused:
-		return
+	var direction : Vector2
+	if focused:
+		direction = Input.get_vector("left", "right", "up", "down")
+		direction = direction.normalized()
+	else:
+		direction = Vector2(0, 0)
 		
-	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	direction = direction.normalized()
-	
 	velocity.x = move_toward(velocity.x, speed * direction.x, accel)
 	velocity.y = move_toward(velocity.y, speed * direction.y, accel)
 	
@@ -37,5 +39,7 @@ func _on_player_switch(new_player : CharacterBody2D):
 	if new_player == self:
 		if not focused:
 			focused = true
+			state_machine.change_state("Focused")
 	elif focused:
 		focused = false
+		state_machine.change_state("NotFocused")
