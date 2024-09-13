@@ -18,6 +18,7 @@ fill_to = Vector2(0.5, 0)
 background_mode = 3
 glow_enabled = true
 glow_intensity = 1.0
+glow_strength = 0.9
 glow_blend_mode = 1
 
 [node name="Node2D" type="Node2D"]

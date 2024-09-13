@@ -15,7 +15,7 @@ func Enter():
 	original_texture_scale = player_light.texture_scale
 	original_modulate_alpha = player_outline.self_modulate.a
 	animation_tween = create_tween()
-	animation_tween.tween_property(self, "animation_progress", 1.0, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
+	animation_tween.tween_property(self, "animation_progress", 1.0, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func Update(delta):
 	player_light.texture_scale = lerpf(original_texture_scale, 1.5, animation_progress)
