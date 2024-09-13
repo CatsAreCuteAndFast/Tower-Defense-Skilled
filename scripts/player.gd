@@ -8,8 +8,11 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var focused = true
+var mouse_hovered = false
 
 func _ready() -> void:
+	GameEvents.player_switch_requested.connect(_on_player_switch)
+	GameEvents.emit_signal("player_switch_requested", self)
 	point_light.color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
 
 func _physics_process(_delta: float) -> void:
@@ -25,7 +28,14 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_area_2d_mouse_entered() -> void:
-	print("hi")
+	mouse_hovered = true
 
 func _on_area_2d_mouse_exited() -> void:
-	print("hi")
+	mouse_hovered = false
+	
+func _on_player_switch(new_player : CharacterBody2D):
+	if new_player == self:
+		if not focused:
+			focused = true
+	elif focused:
+		focused = false

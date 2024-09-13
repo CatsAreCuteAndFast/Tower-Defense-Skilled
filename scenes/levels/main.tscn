@@ -70,3 +70,6 @@ environment = SubResource("Environment_5jsac")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_q8shq")]
 position = Vector2(-14, -98)
+
+[node name="player" parent="." instance=ExtResource("2_q8shq")]
+position = Vector2(-285, -92)
