@@ -6,6 +6,7 @@ class_name Focused
 
 var animation_progress = 0.0
 var animation_tween : Tween
+var bobbing_tween : Tween
 
 var original_texture_scale : float
 var original_modulate_alpha : float
@@ -15,7 +16,9 @@ func Enter():
 	original_texture_scale = player_light.texture_scale
 	original_modulate_alpha = player_outline.self_modulate.a
 	animation_tween = create_tween()
-	animation_tween.tween_property(self, "animation_progress", 1.0, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	animation_tween.tween_property(self, "animation_progress", 1.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	await animation_tween.finished
+	start_bobbing()
 
 func Update(delta):
 	player_light.texture_scale = lerpf(original_texture_scale, 1.5, animation_progress)
@@ -23,3 +26,10 @@ func Update(delta):
 
 func Exit():
 	animation_tween.kill()
+	bobbing_tween.kill()
+	
+func start_bobbing():
+	bobbing_tween = create_tween()
+	bobbing_tween.set_loops()
+	bobbing_tween.tween_property(self, "animation_progress", 1.0, 1.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	bobbing_tween.tween_property(self, "animation_progress", 0.6, 1.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
