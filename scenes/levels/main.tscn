@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh7ka2xivvp8x"]
+[gd_scene load_steps=5 format=3 uid="uid://dh7ka2xivvp8x"]
 
 [ext_resource type="PackedScene" uid="uid://wj8eqnb2ujvh" path="res://scenes/tower_decorations.tscn" id="1_yt3to"]
-[ext_resource type="PackedScene" uid="uid://buy2q86oqaolg" path="res://scenes/player.tscn" id="2_q8shq"]
 
 [sub_resource type="Gradient" id="Gradient_lewxf"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -68,9 +67,3 @@ texture = SubResource("GradientTexture2D_753yh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5jsac")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_q8shq")]
-position = Vector2(-14, -98)
-
-[node name="player" parent="." instance=ExtResource("2_q8shq")]
-position = Vector2(-285, -92)

@@ -1,9 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfbwhdh102n6n"]
+[gd_scene load_steps=6 format=3 uid="uid://dfbwhdh102n6n"]
 
 [ext_resource type="Script" path="res://scripts/player_spawner.gd" id="1_ulehs"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_gvmtt"]
+[ext_resource type="Script" path="res://scripts/states/player_spawner_states/on_ready.gd" id="3_qg2n7"]
+[ext_resource type="Script" path="res://scripts/states/player_spawner_states/on_not_ready.gd" id="4_ns43k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxhiy"]
+radius = 100.0
 
 [node name="PlayerSpawner" type="Polygon2D"]
 self_modulate = Color(15, 15, 15, 1)
 color = Color(0.300792, 0.135633, 7.21961e-08, 1)
 polygon = PackedVector2Array(0, -60, 5, -55, 10, -57.5, 15, -55, 20, -52.5, 20, -52.5, 22.5, -47.5, 22.5, -47.5, 25, -47.5, 27.5, -50, 32.5, -50, 32.5, -47.5, 32.5, -42.5, 32.5, -37.5, 37.5, -35, 37.5, -35, 35, -27.5, 40, -25, 40, -25, 42.5, -22.5, 50, -25, 50, -22.5, 50, -12.5, 57.5, -12.5, 55, -7.5, 50, -5, 45, -2.5, 45, 0, 45, 5, 45, 7.5, 42.5, 10, 40, 10, 37.5, 15, 40, 17.5, 42.5, 20, 42.5, 20, 42.5, 25, 40, 35, 45, 37.5, 42.5, 42.5, 40, 45, 37.5, 47.5, 32.5, 47.5, 30, 57.5, 35, 60, 27.5, 62.5, 22.5, 62.5, 17.5, 57.5, 12.5, 57.5, 0, 57.5, -2.5, 50, -7.5, 50, -12.5, 52.5, -22.5, 45, -20, 45, -30, 37.5, -32.5, 37.5, -35, 40, -45, 35, -45, 30, -42.5, 27.5, -52.5, 17.5, -52.5, 17.5, -52.5, 15, -50, 7.5, -50, 5, -52.5, -2.5, -55, -5, -50, -7.5, -47.5, -7.5, -45, -17.5, -45, -20, -45, -22.5, -32.5, -27.5, -32.5, -27.5, -35, -35, -35, -45, -30, -45, -30, -45, -25, -57.5, -15, -57.5, -15, -52.5, -10, -52.5, -7.5, -57.5)
 script = ExtResource("1_ulehs")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_gvmtt")
+initial_state = NodePath("OnPlayerSpawnReady")
+
+[node name="OnPlayerSpawnReady" type="Node2D" parent="StateMachine"]
+script = ExtResource("3_qg2n7")
+
+[node name="OnPlayerSpawnNotReady" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_ns43k")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yxhiy")
+
+[connection signal="mouse_entered" from="Area2D" to="StateMachine/OnPlayerSpawnReady" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="StateMachine/OnPlayerSpawnReady" method="_on_area_2d_mouse_exited"]

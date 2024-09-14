@@ -7,6 +7,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("left click"):
+		players = get_tree().get_nodes_in_group("players")
 		var click_position = get_global_mouse_position()
 		var clicked_player : CharacterBody2D
 		
