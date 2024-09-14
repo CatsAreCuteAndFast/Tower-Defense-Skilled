@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bb7c6xbgn80h6"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_rtq3q"]
+
+[sub_resource type="Gradient" id="Gradient_gc70i"]
+offsets = PackedFloat32Array(0, 0.64, 1)
+colors = PackedColorArray(1, 1, 1, 1, 6.49765e-06, 0.891697, 0.121509, 0.654902, 0, 1, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yk70x"]
+gradient = SubResource("Gradient_gc70i")
+
+[sub_resource type="Curve" id="Curve_ulhlp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.428571), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cai2p"]
+curve = SubResource("Curve_ulhlp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_khhj2"]
+particle_flag_disable_z = true
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 7.0
+scale_max = 14.0
+scale_curve = SubResource("CurveTexture_cai2p")
+color_ramp = SubResource("GradientTexture1D_yk70x")
+
+[sub_resource type="Gradient" id="Gradient_ktpxp"]
+offsets = PackedFloat32Array(0, 0.64, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.831373, 0, 0, 0.654902, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6t81u"]
+gradient = SubResource("Gradient_ktpxp")
+
+[sub_resource type="Curve" id="Curve_j68jm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.428571), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o7xcs"]
+curve = SubResource("Curve_j68jm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b3mfw"]
+particle_flag_disable_z = true
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 7.0
+scale_max = 14.0
+scale_curve = SubResource("CurveTexture_o7xcs")
+color_ramp = SubResource("GradientTexture1D_6t81u")
+
+[node name="Enemy" type="Node2D"]
+rotation = 0.523599
+script = ExtResource("1_rtq3q")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+self_modulate = Color(10, 10, 10, 1)
+position = Vector2(0, 800)
+polygon = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0)
+
+[node name="GreenExplosion" type="GPUParticles2D" parent="Polygon2D"]
+self_modulate = Color(5, 5, 5, 1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_khhj2")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
+
+[node name="RedExplosion" type="GPUParticles2D" parent="Polygon2D"]
+self_modulate = Color(5, 5, 5, 1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_b3mfw")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
