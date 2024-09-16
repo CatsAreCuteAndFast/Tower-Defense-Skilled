@@ -74,5 +74,9 @@ func destroy(violent : bool):
 		sprite.self_modulate = Color(0, 0, 0, 0)
 		transform_particle.emitting = true
 		transform_particle.speed_scale = 2
+		
+		var spawner = get_tree().get_first_node_in_group("spawner")
+		spawner.damage()
+		
 		await transform_particle.finished
 		queue_free()

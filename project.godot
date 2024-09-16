@@ -33,6 +33,7 @@ project/assembly_name="Lighting"
 [global_group]
 
 players=""
+spawner=""
 
 [input]
 

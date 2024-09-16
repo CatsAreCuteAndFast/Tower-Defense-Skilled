@@ -1,8 +1,14 @@
 extends Polygon2D
 
+@export var health = 3
+@export var health_colors : Array[Color]
+
 var players: Array[Node]
+var current_color : Color
 
 func _ready():
+	current_color = health_colors[health - 1]
+	color = current_color
 	players = get_tree().get_nodes_in_group("players")
 
 func _process(delta: float) -> void:
@@ -18,3 +24,10 @@ func _process(delta: float) -> void:
 			
 		if clicked_player:
 			GameEvents.emit_signal("player_switch_requested", clicked_player)
+			
+func damage():
+	if health == 0:
+		get_tree().reload_current_scene()
+	health -= 1
+	current_color = health_colors[health - 1]
+	color = current_color
