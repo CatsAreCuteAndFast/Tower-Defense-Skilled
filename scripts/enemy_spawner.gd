@@ -6,6 +6,7 @@ extends Node2D
 @export var wave_length = 10.0
 @export var break_between_waves = 10.0
 @export var first_wave_enemies = 5
+@export var enemies_per_wave = 1
 @export var enemy_scene : PackedScene
 
 var elapsed_time : float
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
 		current_state = "attack"
 		elapsed_time = 0.0
 		
-		enemies_to_spawn = first_wave_enemies + wave
+		enemies_to_spawn = first_wave_enemies + wave * enemies_per_wave
 		create_random_increments(wave_length, enemies_to_spawn)
 		
 		wave += 1

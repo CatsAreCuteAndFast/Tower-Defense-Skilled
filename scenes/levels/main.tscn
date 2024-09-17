@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh7ka2xivvp8x"]
+[gd_scene load_steps=5 format=3 uid="uid://dh7ka2xivvp8x"]
 
 [ext_resource type="PackedScene" uid="uid://wj8eqnb2ujvh" path="res://scenes/tower_decorations.tscn" id="1_yt3to"]
 [ext_resource type="PackedScene" uid="uid://boso26ppywvcw" path="res://scenes/enemy_spawner.tscn" id="3_2eag5"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_xf7wp"]
 
 [sub_resource type="Environment" id="Environment_5jsac"]
 background_mode = 3
@@ -38,3 +39,21 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 environment = SubResource("Environment_5jsac")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_2eag5")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("3_xf7wp")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -282.0
+offset_top = -283.0
+offset_right = 18.0
+offset_bottom = 17.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+joystick_mode = 1
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"
