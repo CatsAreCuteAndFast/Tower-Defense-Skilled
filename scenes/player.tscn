@@ -50,6 +50,7 @@ color_ramp = SubResource("GradientTexture1D_dfo1e")
 
 [node name="player" type="CharacterBody2D" groups=["players"]]
 scale = Vector2(0.3, 0.3)
+collision_layer = 2
 script = ExtResource("1_f0pnq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

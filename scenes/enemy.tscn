@@ -92,6 +92,7 @@ fixed_fps = 0
 draw_order = 0
 
 [node name="Area2D" type="Area2D" parent="Polygon2D"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D/Area2D"]
 shape = SubResource("CircleShape2D_8qryy")

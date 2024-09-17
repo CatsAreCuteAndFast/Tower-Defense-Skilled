@@ -5,6 +5,7 @@ extends Polygon2D
 
 var players: Array[Node]
 var current_color : Color
+var color_tween : Tween
 
 func _ready():
 	current_color = health_colors[health - 1]
@@ -30,4 +31,8 @@ func damage():
 		get_tree().reload_current_scene()
 	health -= 1
 	current_color = health_colors[health - 1]
-	color = current_color
+	
+	if color_tween:
+		color_tween.kill()
+	color_tween = create_tween()
+	color_tween.tween_property(self, "color", current_color, 1.0)

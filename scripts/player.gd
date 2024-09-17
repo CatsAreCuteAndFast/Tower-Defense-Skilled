@@ -50,6 +50,7 @@ func _on_player_switch(new_player : CharacterBody2D):
 		state_machine.change_state("NotFocused")
 		
 func destroy(violent : bool):
+	collision_shape_2d.queue_free()
 	if violent:
 		point_light.color = Color(0, 0, 0, 0)
 		polygon_2d.self_modulate = Color(0, 0, 0, 0)

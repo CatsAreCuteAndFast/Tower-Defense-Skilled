@@ -25,8 +25,10 @@ func Update(delta):
 	player_outline.self_modulate.a = lerpf(original_modulate_alpha, 1, animation_progress)
 
 func Exit():
-	animation_tween.kill()
-	bobbing_tween.kill()
+	if animation_tween:
+		animation_tween.kill()
+	if bobbing_tween:
+		bobbing_tween.kill()
 	
 func start_bobbing():
 	bobbing_tween = create_tween()
