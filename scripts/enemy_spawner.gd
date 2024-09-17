@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var wave_progress: ProgressBar = $CanvasLayer/Control/WaveProgress
+@onready var wave_text: Label = $CanvasLayer/Control/WaveText
+
 @export var wave_length = 10.0
 @export var break_between_waves = 10.0
 @export var first_wave_enemies = 5
@@ -26,13 +29,21 @@ func _process(delta: float) -> void:
 		create_random_increments(wave_length, enemies_to_spawn)
 		
 		wave += 1
+		wave_text.text = "Wave " + str(wave)
+		wave_progress.self_modulate = Color("ff0000")
 	elif current_state == "attack" and elapsed_time > wave_length and len(get_tree().get_nodes_in_group("enemies")) == 0:
 		current_state = "idle"
 		elapsed_time = 0.0
 		delete_players()
+		
+		wave_progress.self_modulate = Color("58ff1d")
 	
 	if current_state == "attack":
+		wave_progress.value = 1 - min(1, elapsed_time / wave_length)
 		check_for_enemy_spawn()
+	elif current_state == "idle":
+		wave_progress.value = 1 - min(1, elapsed_time / break_between_waves)
+		
 	
 func create_random_increments(time : float, amount : int):
 	when_to_spawn.clear()
