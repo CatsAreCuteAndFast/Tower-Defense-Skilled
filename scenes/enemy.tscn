@@ -60,7 +60,7 @@ color_ramp = SubResource("GradientTexture1D_6t81u")
 [sub_resource type="CircleShape2D" id="CircleShape2D_8qryy"]
 radius = 30.0
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_rtq3q")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

@@ -3,7 +3,7 @@ class_name OnPlayerSpawnNotReady
 
 @onready var sprite: Polygon2D = $"../.."
 
-@export var cooldown_timer = 2.0
+@export var cooldown_timer = 1.5
 
 var cooldown_tween : Tween
 
