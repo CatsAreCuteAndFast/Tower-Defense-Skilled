@@ -1,5 +1,7 @@
 extends Polygon2D
 
+@onready var game_over: AudioStreamPlayer2D = $GameOver
+
 @export var health = 3
 @export var health_colors : Array[Color]
 
@@ -29,6 +31,8 @@ func _process(delta: float) -> void:
 func damage():
 	health -= 1
 	if health == 0:
+		game_over.play()
+		await game_over.finished
 		get_tree().reload_current_scene()
 	current_color = health_colors[health - 1]
 	

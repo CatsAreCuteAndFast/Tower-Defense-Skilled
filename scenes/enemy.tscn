@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bb7c6xbgn80h6"]
+[gd_scene load_steps=17 format=3 uid="uid://bb7c6xbgn80h6"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_rtq3q"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_nccqr"]
 [ext_resource type="Script" path="res://scripts/states/enemy_states/red_enemy.gd" id="3_y7t12"]
 [ext_resource type="Script" path="res://scripts/states/enemy_states/green_enemy.gd" id="4_syov3"]
+[ext_resource type="AudioStream" uid="uid://cttw0d5qaqyua" path="res://sprites/hit.mp3" id="5_p7ojq"]
 
 [sub_resource type="Gradient" id="Gradient_gc70i"]
 offsets = PackedFloat32Array(0, 0.64, 1)
@@ -106,6 +107,10 @@ script = ExtResource("3_y7t12")
 
 [node name="GreenEnemy" type="Node2D" parent="StateMachine"]
 script = ExtResource("4_syov3")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(66, 551)
+stream = ExtResource("5_p7ojq")
 
 [connection signal="body_entered" from="Polygon2D/Area2D" to="StateMachine/RedEnemy" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Polygon2D/Area2D" to="StateMachine/GreenEnemy" method="_on_area_2d_body_entered"]

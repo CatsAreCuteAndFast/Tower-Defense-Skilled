@@ -4,9 +4,7 @@
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_gvmtt"]
 [ext_resource type="Script" path="res://scripts/states/player_spawner_states/on_ready.gd" id="3_qg2n7"]
 [ext_resource type="Script" path="res://scripts/states/player_spawner_states/on_not_ready.gd" id="4_ns43k"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yxhiy"]
-radius = 100.0
+[ext_resource type="AudioStream" uid="uid://4etefkvuim8b" path="res://sprites/game over.mp3" id="5_jgcig"]
 
 [node name="PlayerSpawner" type="Polygon2D" groups=["spawner"]]
 self_modulate = Color(15, 15, 15, 1)
@@ -24,7 +22,6 @@ script = ExtResource("3_qg2n7")
 [node name="OnPlayerSpawnNotReady" type="Node2D" parent="StateMachine"]
 script = ExtResource("4_ns43k")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_yxhiy")
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-129, -38)
+stream = ExtResource("5_jgcig")

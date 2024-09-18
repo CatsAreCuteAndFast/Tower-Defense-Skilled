@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://buy2q86oqaolg"]
+[gd_scene load_steps=13 format=3 uid="uid://buy2q86oqaolg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f0pnq"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_y3oum"]
@@ -19,9 +19,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 metadata/_snap_enabled = true
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mje4n"]
-radius = 150.0
 
 [sub_resource type="Gradient" id="Gradient_brb1c"]
 colors = PackedColorArray(100, 100, 100, 1, 0, 0, 0, 0)
@@ -61,11 +58,6 @@ energy = 0.5
 shadow_enabled = true
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_mofmb")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_mje4n")
 
 [node name="Shape" type="Node2D" parent="."]
 

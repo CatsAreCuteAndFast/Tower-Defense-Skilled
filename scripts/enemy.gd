@@ -4,6 +4,7 @@ extends Node2D
 @onready var green_explosion: GPUParticles2D = $Polygon2D/GreenExplosion
 @onready var red_explosion: GPUParticles2D = $Polygon2D/RedExplosion
 @onready var state_machine: StateMachine = $StateMachine
+@onready var hit: AudioStreamPlayer2D = $Hit
 
 @export var transform_radius = 450.0
 @export var move_speed = 50.0
@@ -75,6 +76,7 @@ func destroy(violent : bool):
 		await destroy_tween.finished
 		queue_free()
 	elif violent:
+		hit.play()
 		sprite.self_modulate = Color(0, 0, 0, 0)
 		transform_particle.emitting = true
 		transform_particle.speed_scale = 2
