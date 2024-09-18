@@ -5,7 +5,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var wave_length = 10.0
-@export var break_between_waves = 10.0
+@export var break_between_waves = 5.0
 @export var first_wave_enemies = 5
 @export var enemies_per_wave = 1
 
@@ -18,17 +18,16 @@ var enemies_to_spawn : int
 var when_to_spawn : Array[float]
 
 func _ready() -> void:
-	create_random_increments(wave_length, enemies_to_spawn)
+	create_random_increments(wave_length - 10, enemies_to_spawn)
 	
 func _process(delta: float) -> void:
 	elapsed_time += delta
-	
 	if current_state == "idle" and elapsed_time > break_between_waves:
 		current_state = "attack"
 		elapsed_time = 0.0
 		
 		enemies_to_spawn = first_wave_enemies + wave * enemies_per_wave
-		create_random_increments(wave_length, enemies_to_spawn)
+		create_random_increments(wave_length - 10, enemies_to_spawn)
 		
 		wave += 1
 		wave_text.text = "Wave " + str(wave)

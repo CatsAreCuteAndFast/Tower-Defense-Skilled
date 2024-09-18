@@ -78,7 +78,7 @@ metadata/_snap_enabled = true
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_e0h0o")
-break_between_waves = 5.0
+wave_length = 20.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

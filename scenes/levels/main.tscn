@@ -43,7 +43,6 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 environment = SubResource("Environment_5jsac")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_2eag5")]
-break_between_waves = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
