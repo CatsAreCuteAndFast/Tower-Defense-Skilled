@@ -27,9 +27,9 @@ func _process(delta: float) -> void:
 			GameEvents.emit_signal("player_switch_requested", clicked_player)
 			
 func damage():
+	health -= 1
 	if health == 0:
 		get_tree().reload_current_scene()
-	health -= 1
 	current_color = health_colors[health - 1]
 	
 	if color_tween:
