@@ -5,6 +5,8 @@ extends Node2D
 @onready var red_explosion: GPUParticles2D = $Polygon2D/RedExplosion
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hit: AudioStreamPlayer2D = $Hit
+@onready var green_explosion_2: GPUParticles2D = $Polygon2D/GreenExplosion2
+@onready var red_explosion_2: GPUParticles2D = $Polygon2D/RedExplosion2
 
 @export var transform_radius = 450.0
 @export var move_speed = 50.0
@@ -16,6 +18,7 @@ var transform_color : String
 var transform_particle : GPUParticles2D
 var transform_modulate : Color
 
+var destroy_particle : GPUParticles2D
 var destroy_tween : Tween
 var destroyed = false
 
@@ -28,6 +31,7 @@ func _ready() -> void:
 	camera = get_tree().get_first_node_in_group("camera")
 	
 	transform_particle = red_explosion
+	destroy_particle = red_explosion_2
 	transform_modulate = Color(10, 0, 0, 1)
 	
 	var rotation_value = randi_range(-30, 30)
@@ -50,10 +54,12 @@ func random_transform():
 	
 	transform_color = "red" if randi() % 2 == 0 else "blue"
 	if transform_color == "red":
+		destroy_particle = red_explosion_2
 		transform_particle = red_explosion
 		transform_modulate = Color(10, 0, 0, 1)
 		state_machine.change_state("RedEnemy")
 	else:
+		destroy_particle = green_explosion_2
 		transform_particle = green_explosion
 		transform_modulate = Color(0, 10, 0, 1)
 		state_machine.change_state("GreenEnemy")
@@ -78,13 +84,13 @@ func destroy(violent : bool):
 	elif violent:
 		hit.play()
 		sprite.self_modulate = Color(0, 0, 0, 0)
-		transform_particle.emitting = true
-		transform_particle.speed_scale = 2
+		destroy_particle.emitting = true
+		destroy_particle.speed_scale = 2
 		
 		var spawner = get_tree().get_first_node_in_group("spawner")
 		spawner.damage()
 		
 		camera.Screenshake(10, 5)
 		
-		await transform_particle.finished
+		await destroy_particle.finished
 		queue_free()

@@ -98,9 +98,31 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D/Area2D"]
 shape = SubResource("CircleShape2D_8qryy")
 
+[node name="GreenExplosion2" type="GPUParticles2D" parent="Polygon2D"]
+self_modulate = Color(5, 5, 5, 1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_khhj2")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
+
+[node name="RedExplosion2" type="GPUParticles2D" parent="Polygon2D"]
+self_modulate = Color(5, 5, 5, 1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_b3mfw")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
+
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_nccqr")
-initial_state = NodePath("RedEnemy")
+initial_state = NodePath("GreenEnemy")
 
 [node name="RedEnemy" type="Node2D" parent="StateMachine"]
 script = ExtResource("3_y7t12")
