@@ -30,13 +30,13 @@ func _process(delta: float) -> void:
 			
 func damage():
 	health -= 1
-	if health == 0:
-		game_over.play()
-		await game_over.finished
-		get_tree().reload_current_scene()
 	current_color = health_colors[health - 1]
-	
 	if color_tween:
 		color_tween.kill()
 	color_tween = create_tween()
 	color_tween.tween_property(self, "color", current_color, 1.0)
+	
+	if health == 0:
+		game_over.play()
+		await game_over.finished
+		get_tree().reload_current_scene()
