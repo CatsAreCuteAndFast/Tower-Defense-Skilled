@@ -1,6 +1,80 @@
-[gd_scene load_steps=2 format=3 uid="uid://boso26ppywvcw"]
+[gd_scene load_steps=7 format=3 uid="uid://boso26ppywvcw"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_e0h0o"]
+
+[sub_resource type="Animation" id="Animation_rqgjn"]
+resource_name = "wave_clear"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/CanvasLayer/Control/Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/CanvasLayer/Control/Sprite2D:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.396078), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ty6bx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/CanvasLayer/Control/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/CanvasLayer/Control/Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eemrt"]
+_data = {
+"RESET": SubResource("Animation_ty6bx"),
+"wave_clear": SubResource("Animation_rqgjn")
+}
+
+[sub_resource type="Gradient" id="Gradient_8jk0b"]
+offsets = PackedFloat32Array(0, 0.902597, 1)
+colors = PackedColorArray(0.784314, 0.784314, 0.784314, 1, 0.953581, 0.832184, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_diwlx"]
+gradient = SubResource("Gradient_8jk0b")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_e0h0o")
@@ -44,3 +118,32 @@ offset_bottom = 50.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Wave 0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eemrt")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="AnimationPlayer"]
+layer = 0
+
+[node name="Control" type="Control" parent="AnimationPlayer/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer/CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_diwlx")

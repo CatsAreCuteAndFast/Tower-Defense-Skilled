@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var wave_progress: ProgressBar = $CanvasLayer/Control/WaveProgress
 @onready var wave_text: Label = $CanvasLayer/Control/WaveText
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var wave_length = 10.0
 @export var break_between_waves = 10.0
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 		delete_players()
 		
 		wave_progress.self_modulate = Color("58ff1d")
+		animation_player.play("wave_clear")
 	
 	if current_state == "attack":
 		wave_progress.value = 1 - min(1, elapsed_time / wave_length)
