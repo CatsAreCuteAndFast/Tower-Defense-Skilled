@@ -12,7 +12,6 @@ extends CharacterBody2D
 @onready var polygon_2d: Polygon2D = $Shape/Polygon2D
 
 var focused = true
-var mouse_hovered = false
 
 var destroy_tween : Tween
 
@@ -33,12 +32,6 @@ func _physics_process(_delta: float) -> void:
 	velocity.y = move_toward(velocity.y, speed * direction.y, accel)
 	
 	move_and_slide()
-
-func _on_area_2d_mouse_entered() -> void:
-	mouse_hovered = true
-
-func _on_area_2d_mouse_exited() -> void:
-	mouse_hovered = false
 	
 func _on_player_switch(new_player : CharacterBody2D):
 	if new_player == self:
@@ -65,4 +58,3 @@ func destroy(violent : bool):
 		destroy_tween.tween_property(polygon_2d_2, "modulate", Color(0, 0, 0, 0), 1.0)
 		await destroy_tween.finished
 		queue_free()
-		

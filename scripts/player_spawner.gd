@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		var clicked_player : CharacterBody2D
 		
 		for player in players:
-			if player.mouse_hovered:
+			if get_global_mouse_position().distance_to(player.global_position) < 40:
 				clicked_player = player
 				break
 			

@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 		shake_strength = lerpf(shake_strength, 0, shake_fade * delta)
 		
 func Screenshake(screenshake_strength, screenshake_fade):
-	Input.vibrate_handheld(180, 0.5)
+	Input.vibrate_handheld(100, 0.2)
 	shake_strength = screenshake_strength
 	shake_fade = screenshake_fade
 	

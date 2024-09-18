@@ -106,6 +106,3 @@ script = ExtResource("3_ei612")
 
 [node name="NotFocused" type="Node2D" parent="StateMachine"]
 script = ExtResource("4_w460t")
-
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
