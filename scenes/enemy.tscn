@@ -58,7 +58,7 @@ scale_curve = SubResource("CurveTexture_o7xcs")
 color_ramp = SubResource("GradientTexture1D_6t81u")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8qryy"]
-radius = 30.0
+radius = 20.0
 
 [node name="Enemy" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_rtq3q")
