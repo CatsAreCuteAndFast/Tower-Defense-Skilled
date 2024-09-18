@@ -7,8 +7,8 @@ extends Node2D
 @export var break_between_waves = 10.0
 @export var first_wave_enemies = 5
 @export var enemies_per_wave = 1
-@export var enemy_scene : PackedScene
 
+var enemy_scene = preload("res://scenes/enemy.tscn")
 var elapsed_time : float
 
 var current_state = "idle"

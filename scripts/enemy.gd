@@ -20,8 +20,12 @@ var destroyed = false
 
 var moving = true
 
+var camera
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	camera = get_tree().get_first_node_in_group("camera")
+	
 	transform_particle = red_explosion
 	transform_modulate = Color(10, 0, 0, 1)
 	
@@ -77,6 +81,8 @@ func destroy(violent : bool):
 		
 		var spawner = get_tree().get_first_node_in_group("spawner")
 		spawner.damage()
+		
+		camera.Screenshake(10, 5)
 		
 		await transform_particle.finished
 		queue_free()

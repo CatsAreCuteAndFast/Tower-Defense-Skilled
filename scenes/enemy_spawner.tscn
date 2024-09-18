@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://boso26ppywvcw"]
+[gd_scene load_steps=2 format=3 uid="uid://boso26ppywvcw"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_e0h0o"]
-[ext_resource type="PackedScene" uid="uid://bb7c6xbgn80h6" path="res://scenes/enemy.tscn" id="2_duo4r"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_e0h0o")
 break_between_waves = 5.0
-enemy_scene = ExtResource("2_duo4r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

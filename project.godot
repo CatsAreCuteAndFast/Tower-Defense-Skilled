@@ -36,6 +36,7 @@ project/assembly_name="Lighting"
 players=""
 spawner=""
 enemies=""
+camera=""
 
 [input]
 
@@ -77,5 +78,7 @@ common/physics_interpolation=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+environment/glow/upscale_mode.mobile=1
+environment/screen_space_reflection/roughness_quality=0
 viewport/hdr_2d=true
 anti_aliasing/quality/screen_space_aa=1
