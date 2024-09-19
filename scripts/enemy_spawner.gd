@@ -3,8 +3,10 @@ extends Node2D
 @onready var wave_progress: ProgressBar = $CanvasLayer/Control/WaveProgress
 @onready var wave_text: Label = $CanvasLayer/Control/WaveText
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var button: Button = $CanvasLayer/Control/Button
 
 @export var wave_length = 10.0
+@export var first_break = 35.0
 @export var break_between_waves = 5.0
 @export var first_wave_enemies = 5
 @export var enemies_per_wave = 1
@@ -16,13 +18,18 @@ var current_state = "idle"
 var wave = 0
 var enemies_to_spawn : int
 var when_to_spawn : Array[float]
+var first_wave = true
 
 func _ready() -> void:
 	create_random_increments(wave_length - 10, enemies_to_spawn)
 	
 func _process(delta: float) -> void:
 	elapsed_time += delta
-	if current_state == "idle" and elapsed_time > break_between_waves:
+	if (current_state == "idle" and elapsed_time > break_between_waves and not first_wave) or first_wave and elapsed_time > first_break:
+		if first_wave:
+			first_wave = false
+			button.queue_free()
+			get_tree().get_first_node_in_group("tutorial").hide_tutorial()
 		current_state = "attack"
 		elapsed_time = 0.0
 		
@@ -44,7 +51,10 @@ func _process(delta: float) -> void:
 		wave_progress.value = 1 - min(1, elapsed_time / wave_length)
 		check_for_enemy_spawn()
 	elif current_state == "idle":
-		wave_progress.value = 1 - min(1, elapsed_time / break_between_waves)
+		if first_wave:
+			wave_progress.value = 1 - min(1, elapsed_time / first_break)
+		else:
+			wave_progress.value = 1 - min(1, elapsed_time / break_between_waves)
 		
 	
 func create_random_increments(time : float, amount : int):
@@ -65,3 +75,7 @@ func spawn_enemy():
 func delete_players():
 	for player in get_tree().get_nodes_in_group("players"):
 		player.destroy(false)
+
+
+func _on_button_pressed() -> void:
+	elapsed_time = 100.0

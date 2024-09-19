@@ -37,6 +37,7 @@ players=""
 spawner=""
 enemies=""
 camera=""
+tutorial=""
 
 [input]
 

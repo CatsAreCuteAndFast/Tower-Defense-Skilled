@@ -119,6 +119,14 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Wave 0"
 
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -237.0
+offset_top = 903.0
+offset_right = -132.0
+offset_bottom = 934.0
+text = "Skip Tutorial"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_eemrt")
@@ -147,3 +155,5 @@ self_modulate = Color(1, 1, 1, 0)
 z_index = -1
 scale = Vector2(1e-05, 1e-05)
 texture = SubResource("GradientTexture2D_diwlx")
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
