@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh7ka2xivvp8x"]
+[gd_scene load_steps=8 format=3 uid="uid://dh7ka2xivvp8x"]
 
 [ext_resource type="Script" path="res://scripts/screenshake.gd" id="1_xwml2"]
 [ext_resource type="PackedScene" uid="uid://wj8eqnb2ujvh" path="res://scenes/tower_decorations.tscn" id="1_yt3to"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_xf7wp"]
 [ext_resource type="AudioStream" uid="uid://nkaxx7xq1npc" path="res://sprites/Jasmine Whipers - Patrick Patrikios.mp3" id="5_r4lxt"]
 [ext_resource type="PackedScene" uid="uid://iq7fpp28geq7" path="res://scenes/tutorial.tscn" id="6_kq333"]
+
+[sub_resource type="Environment" id="Environment_3gxpb"]
+background_mode = 3
 
 [node name="Node2D" type="Node2D"]
 
@@ -59,3 +62,6 @@ stream = ExtResource("5_r4lxt")
 autoplay = true
 
 [node name="Tutorial" parent="." instance=ExtResource("6_kq333")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3gxpb")
