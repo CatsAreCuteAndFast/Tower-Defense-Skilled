@@ -7,6 +7,7 @@ extends Node2D
 @onready var hit: AudioStreamPlayer2D = $Hit
 @onready var green_explosion_2: GPUParticles2D = $Polygon2D/GreenExplosion2
 @onready var red_explosion_2: GPUParticles2D = $Polygon2D/RedExplosion2
+@onready var area_2d: Area2D = $Polygon2D/Area2D
 
 @export var transform_radius = 450.0
 @export var move_speed = 50.0
@@ -77,6 +78,7 @@ func destroy(violent : bool):
 	moving = false
 		
 	if not violent:
+		area_2d.queue_free()
 		destroy_tween = create_tween()
 		destroy_tween.tween_property(sprite, "self_modulate", Color(0, 0, 0, 0), 1.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 		await destroy_tween.finished

@@ -3,7 +3,7 @@ extends Node2D
 @onready var wave_progress: ProgressBar = $CanvasLayer/Control/WaveProgress
 @onready var wave_text: Label = $CanvasLayer/Control/WaveText
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var button: Button = $CanvasLayer/Control/Button
+@onready var button: Button = $CanvasLayer/Control2/Button
 
 @export var wave_length = 10.0
 @export var first_break = 35.0
